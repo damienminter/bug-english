@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import ListBug from "./components/ListBug";
+
+import { useSelector } from "react-redux";
 
 function App() {
+  const bugs = useSelector((state) => state.bugs);
+  // const bug = useSelector((state) => state.bugs);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-body">
+        <ListBug bugs={bugs} />
+      </div>
     </div>
   );
 }
