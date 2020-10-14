@@ -6,7 +6,7 @@ export default function bugReducer(state = initialState, action) {
     case ADD_BUG:
       return {
         ...state,
-        bugs: [action.payload, ...state.todos],
+        bugs: [action.payload, ...state.bugs],
       };
     case SELECT_BUG:
       return {

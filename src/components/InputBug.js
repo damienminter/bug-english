@@ -1,67 +1,78 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-// import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-// import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-// import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-// import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
-// import ShareIcon from "@material-ui/icons/Share";
-// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import BugReportIcon from "@material-ui/icons/BugReport";
 
 //Redux
-// import { useDispatch } from "react-redux";
-// import { selectBugAction } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { addBugAction } from "../redux/actions";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    display: "flex",
+    flexWrap: "wrap",
   },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
+  margin: {
+    margin: theme.spacing(1),
   },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
+  withoutLabel: {
+    marginTop: theme.spacing(3),
   },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
-  avatar: {
-    backgroundColor: red[500],
+  textField: {
+    width: "25ch",
   },
 }));
 
 // Component
 export default function InputBug() {
-  // const dispatchBug = useDispatch();
   const classes = useStyles();
-  // const [expanded, setExpanded] = useState(false);
+  const dispatchBug = useDispatch();
 
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
+  const initState = {
+    bugName: "",
+    bugDescription: "",
+  };
+  const [bugValues, setBugValues] = useState(initState);
+
+  const handleOnChange = (e) => {
+    setBugValues({
+      ...bugValues,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  console.log(bugValues);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newBug = {
+      id: uuidv4(),
+      timeStamp: new Date(),
+      name: bugValues.bugName,
+      img: "url of the image",
+      description: bugValues.bugDescription,
+    };
+    dispatchBug(addBugAction(newBug));
+    setBugValues(initState);
+  };
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {"bug.id"}
+            {"Me"}
           </Avatar>
         }
         action={
@@ -69,18 +80,35 @@ export default function InputBug() {
             <MoreVertIcon />
           </IconButton>
         }
-        title={"bug.name"}
-        subheader="September 14, 2016"
+        title={"Bug English"}
+        subheader="Enter a new Bug"
       />
 
       <CardContent>
-        <form className={classes.root} noValidate autoComplete="off">
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
+          <TextField
+            id="bugName"
+            label="Bug Name"
+            variant="outlined"
+            value={bugValues.bugName}
+            onChange={handleOnChange}
+          />
+          <TextField
+            id="bugDescription"
+            label="Description"
+            variant="outlined"
+            value={bugValues.bugDescription}
+            onChange={handleOnChange}
+          />
+          <Button type="submit" variant="outlined" color="secondary">
+            Submit
+            <BugReportIcon />
+          </Button>
         </form>
       </CardContent>
     </Card>

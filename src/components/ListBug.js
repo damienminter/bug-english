@@ -12,7 +12,7 @@ export default function ListBug(props) {
         container
         direction="row"
         justify="space-around"
-        alignItems="center"
+        alignItems="flex-start"
       >
         {bugs && bugs.map((bug) => <ItemBug key={bug.id} bug={bug} />)}
       </Grid>

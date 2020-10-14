@@ -1,10 +1,11 @@
 import React from "react";
 
-export default function DetailBug() {
+export default function DetailBug(props) {
+  const { bug } = props;
   return (
     <div>
       <div className="loction-container">
-        <h4>Location</h4>
+        <h4>{bug.name}</h4>
       </div>
       <div className="date-added-container">
         <h4>Date</h4>

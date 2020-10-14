@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -75,6 +76,8 @@ export default function ItemBug(props) {
           <IconButton
             aria-label="settings"
             onClick={handleSelectBug.bind(null, bug)}
+            component={Link}
+            to={"/bug-details"}
           >
             <MoreVertIcon />
           </IconButton>

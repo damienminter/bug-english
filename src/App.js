@@ -1,26 +1,27 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import "./App.css";
-import ListBug from "./components/ListBug";
 
-import Container from "@material-ui/core/Container";
-import InputBug from "./components/InputBug";
-
-import { useSelector } from "react-redux";
+import PrimarySearchAppBar from "./navigation/PrimarySearchAppBar";
+import Routes from "./navigation/Routes";
 
 function App() {
-  const bugs = useSelector((state) => state.bugs);
   // const bug = useSelector((state) => state.bugs);
 
   return (
-    <div className="App">
-      <Container>
-        <InputBug />
-      </Container>
-
-      <div className="App-body">
-        <ListBug bugs={bugs} />
+    <Router>
+      <div className="App">
+        <PrimarySearchAppBar />
+        <Routes />
+        {/* <Container>
+          <InputBug />
+        </Container>
+        <div className="App-body">
+          <ListBug bugs={bugs} />
+        </div> */}
       </div>
-    </div>
+    </Router>
   );
 }
 
