@@ -1,5 +1,5 @@
 import { initialState } from "./data";
-import { ADD_BUG, SELECT_BUG, SELECT_COMPANY } from "./constants";
+import { ADD_BUG, SELECT_BUG, FILTER_BUGS, SELECT_COMPANY } from "./constants";
 
 export default function bugReducer(state = initialState, action) {
   switch (action.type) {
@@ -13,8 +13,13 @@ export default function bugReducer(state = initialState, action) {
         ...state,
         bug: action.payload,
       };
+    case FILTER_BUGS:
+      console.log("REDUCER FIRED !!");
+      return {
+        ...state,
+        filterBugs: state.bugs.filter((bug) => bug.compId === action.payload),
+      };
     case SELECT_COMPANY:
-      console.log("reducer fired");
       return {
         ...state,
         company: state.companies.find(

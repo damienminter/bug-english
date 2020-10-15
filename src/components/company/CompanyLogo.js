@@ -9,7 +9,7 @@ import { red } from "@material-ui/core/colors";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { selectCompanyAction } from "../../redux/actions";
+import { selectCompanyAction, filterBugsAction } from "../../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
 export default function CompanyLogo({ compId }) {
   const classes = useStyles();
   const dispatchCompany = useDispatch();
+  const dispatchFilterBugs = useDispatch();
 
   const handleSelectCompany = (compId) => {
-    console.log("COMPANY LOGO - COMP ID");
-    console.log(compId);
     dispatchCompany(selectCompanyAction(compId));
+    dispatchFilterBugs(filterBugsAction(compId));
   };
 
   return (

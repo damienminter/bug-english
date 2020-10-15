@@ -45,6 +45,7 @@ export const initialState = {
     },
   ],
   bug: {},
+  filterBugs: [],
   companies: [
     {
       id: "1",

@@ -12,6 +12,13 @@ export const selectBugAction = (bug) => {
   };
 };
 
+export const filterBugsAction = (compId) => {
+  return {
+    type: "FILTER_BUGS",
+    payload: compId,
+  };
+};
+
 export const selectCompanyAction = (compId) => {
   return {
     type: "SELECT_COMPANY",

@@ -3,10 +3,11 @@ import ItemBug from "../ItemBug";
 
 // Redux
 export default function CompanyListBugs(props) {
-  const { bugs } = props;
+  const { compBugs } = props;
   return (
     <div className="list-component">
-      {/* {bugs && bugs.map((bug) => <ItemBug key={bug.id} bug={bug} />)} */}
+      {compBugs && compBugs.map((bug) => <ItemBug key={bug.id} bug={bug} />)}
+      <CompanyListBugs />
     </div>
   );
 }
