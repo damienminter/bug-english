@@ -1,5 +1,6 @@
 import React from "react";
 import ItemBug from "../ItemBug";
+import CompanyBugList from "./CompanyBugList";
 
 // Redux
 export default function CompanyListBugs(props) {
@@ -7,7 +8,7 @@ export default function CompanyListBugs(props) {
   return (
     <div className="list-component">
       {compBugs && compBugs.map((bug) => <ItemBug key={bug.id} bug={bug} />)}
-      <CompanyListBugs />
+      <CompanyBugList />
     </div>
   );
 }
