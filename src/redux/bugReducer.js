@@ -14,7 +14,6 @@ export default function bugReducer(state = initialState, action) {
         bug: action.payload,
       };
     case FILTER_BUGS:
-      console.log("REDUCER FIRED !!");
       return {
         ...state,
         filterBugs: state.bugs.filter((bug) => bug.compId === action.payload),

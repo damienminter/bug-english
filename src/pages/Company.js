@@ -8,9 +8,6 @@ export default function Company() {
   const comp = useSelector((state) => state.company);
   const compBugs = useSelector((state) => state.filterBugs);
 
-  console.log("COMPANY");
-  console.log(compBugs);
-
   return (
     <div>
       <h1>THIS IS THE COMPANY PAGE</h1>
