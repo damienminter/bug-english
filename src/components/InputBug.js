@@ -61,6 +61,7 @@ export default function InputBug() {
       name: bugValues.bugName,
       img: "url of the image",
       description: bugValues.bugDescription,
+      compId: 0,
     };
     dispatchBug(addBugAction(newBug));
     setBugValues(initState);

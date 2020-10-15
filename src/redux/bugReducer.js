@@ -14,9 +14,12 @@ export default function bugReducer(state = initialState, action) {
         bug: action.payload,
       };
     case SELECT_COMPANY:
+      console.log("reducer fired");
       return {
         ...state,
-        company: action.payload,
+        company: state.companies.find(
+          (company) => company.id === action.payload
+        ),
       };
     default:
       return state;
