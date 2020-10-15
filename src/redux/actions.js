@@ -11,3 +11,10 @@ export const selectBugAction = (bug) => {
     payload: bug,
   };
 };
+
+export const selectCompanyAction = (compId) => {
+  return {
+    type: "SELECT_COMPANY",
+    payload: compId,
+  };
+};

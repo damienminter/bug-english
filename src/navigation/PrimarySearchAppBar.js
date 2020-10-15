@@ -20,6 +20,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 // import { FilterNone } from "@material-ui/icons";
+import BugReportIcon from "@material-ui/icons/BugReport";
 
 const useStyles = makeStyles((theme) => ({
   navlink: {
@@ -186,6 +187,7 @@ export default function PrimarySearchAppBar() {
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             <NavLink className={classes.navlink} to="/">
+              <BugReportIcon className="App-logo" />
               Bug English
             </NavLink>
           </Typography>

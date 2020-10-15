@@ -10,7 +10,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
+// import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
@@ -18,6 +18,9 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+// import BugReportIcon from "@material-ui/icons/BugReport";
+
+import CompanyLogo from "../components/company/CompanyLogo";
 
 //Redux
 import { useDispatch } from "react-redux";
@@ -60,17 +63,27 @@ export default function ItemBug(props) {
 
   // Redux Event Handlers
   const handleSelectBug = (bug) => {
-    console.log(bug);
     dispatchBug(selectBugAction(bug));
   };
+
+  // const handleSelectCompany = (bug) => {
+  //   dispatchBug(selectBugAction(bug));
+  // };
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {bug.id}
-          </Avatar>
+          <CompanyLogo compId={bug.compId} />
+          // <Avatar
+          //   aria-label="recipe"
+          //   className={classes.avatar}
+          //   onClick={handleSelectCompany.bind(null, bug)}
+          //   component={Link}
+          //   to={"/company"}
+          // >
+          //   <BugReportIcon />
+          // </Avatar>
         }
         action={
           <IconButton

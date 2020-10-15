@@ -1,5 +1,5 @@
 import { initialState } from "./data";
-import { ADD_BUG, SELECT_BUG } from "./constants";
+import { ADD_BUG, SELECT_BUG, SELECT_COMPANY } from "./constants";
 
 export default function bugReducer(state = initialState, action) {
   switch (action.type) {
@@ -12,6 +12,11 @@ export default function bugReducer(state = initialState, action) {
       return {
         ...state,
         bug: action.payload,
+      };
+    case SELECT_COMPANY:
+      return {
+        ...state,
+        company: action.payload,
       };
     default:
       return state;

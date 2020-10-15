@@ -55,3 +55,17 @@
   flex: 2;
   width: 0%;
 }
+
+.details-component {
+  display: grid;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.list-component {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}

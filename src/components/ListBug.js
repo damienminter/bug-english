@@ -1,21 +1,14 @@
 import React from "react";
 
-import Grid from "@material-ui/core/Grid";
 import ItemBug from "./ItemBug";
+import "../App.css";
 
 export default function ListBug(props) {
   const { bugs } = props;
 
   return (
-    <>
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="flex-start"
-      >
-        {bugs && bugs.map((bug) => <ItemBug key={bug.id} bug={bug} />)}
-      </Grid>
-    </>
+    <div className="list-component">
+      {bugs && bugs.map((bug) => <ItemBug key={bug.id} bug={bug} />)}
+    </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+// import { Link } from "react-router-dom";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -51,8 +52,6 @@ export default function InputBug() {
       [e.target.id]: e.target.value,
     });
   };
-
-  console.log(bugValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
