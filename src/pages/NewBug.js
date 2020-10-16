@@ -3,7 +3,7 @@ import InputBug from "../components/InputBug";
 
 export default function NewBug() {
   return (
-    <div>
+    <div className="new-bug-page">
       <InputBug />
     </div>
   );

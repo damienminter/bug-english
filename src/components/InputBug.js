@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TextField from "@material-ui/core/TextField";
@@ -23,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
+    flexDirection: "column",
   },
   margin: {
     margin: theme.spacing(1),
@@ -70,11 +70,6 @@ export default function InputBug() {
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {"Me"}
-          </Avatar>
-        }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
@@ -95,17 +90,28 @@ export default function InputBug() {
             id="bugName"
             label="Bug Name"
             variant="outlined"
+            required
             value={bugValues.bugName}
             onChange={handleOnChange}
+            className={classes.margin}
           />
           <TextField
             id="bugDescription"
             label="Description"
             variant="outlined"
+            required
+            multiline
+            rowsMax={8}
             value={bugValues.bugDescription}
             onChange={handleOnChange}
+            className={classes.margin}
           />
-          <Button type="submit" variant="outlined" color="secondary">
+          <Button
+            className={classes.margin}
+            type="submit"
+            variant="outlined"
+            color="secondary"
+          >
             Submit
             <BugReportIcon />
           </Button>

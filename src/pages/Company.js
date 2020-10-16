@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CompanyListBug from "../components/company/CompanyListBugs";
 
 import { useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import CompanyInformation from "../components/company/CompanyInformation";
 export default function Company() {
   const comp = useSelector((state) => state.company);
   const compBugs = useSelector((state) => state.filterBugs);
-  const currentBug = useSelector((state) => state.bug);
+  // const currentBug = useSelector((state) => state.bug);
 
   if (comp === null || comp === undefined) {
     return (
