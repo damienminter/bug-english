@@ -43,6 +43,7 @@ export default function InputBug() {
   const initState = {
     bugName: "",
     bugDescription: "",
+    bugCompId: "0",
   };
   const [bugValues, setBugValues] = useState(initState);
 
@@ -57,11 +58,12 @@ export default function InputBug() {
     e.preventDefault();
     const newBug = {
       id: uuidv4(),
-      timeStamp: new Date(),
+      // timeStamp: new Date(),
+      timeStamp: "10.30",
       name: bugValues.bugName,
       img: "url of the image",
       description: bugValues.bugDescription,
-      compId: 0,
+      compId: bugValues.bugCompId,
     };
     dispatchBug(addBugAction(newBug));
     setBugValues(initState);
@@ -103,6 +105,15 @@ export default function InputBug() {
             multiline
             rowsMax={8}
             value={bugValues.bugDescription}
+            onChange={handleOnChange}
+            className={classes.margin}
+          />
+          <TextField
+            id="bugCompId"
+            label="Company Id"
+            variant="outlined"
+            required
+            value={bugValues.bugCompId}
             onChange={handleOnChange}
             className={classes.margin}
           />
