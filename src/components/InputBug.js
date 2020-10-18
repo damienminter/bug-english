@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import makeRequest from "../naver/location";
+import revLocation from "../naver/revLocation";
+import makeRequestXhr from "../naver/location copy 2";
 // import { Link } from "react-router-dom";
 
 // Material UI
@@ -15,7 +18,7 @@ import BugReportIcon from "@material-ui/icons/BugReport";
 
 //Redux
 import { useDispatch } from "react-redux";
-import { addBugAction } from "../redux/actions";
+import { addBugAction, selectBugAction } from "../redux/actions";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -44,8 +47,10 @@ export default function InputBug() {
     bugName: "",
     bugDescription: "",
     bugCompId: "0",
+    bugSearch: "",
   };
   const [bugValues, setBugValues] = useState(initState);
+  // const [search, setSearch] = useState("");
 
   const handleOnChange = (e) => {
     setBugValues({
@@ -53,6 +58,7 @@ export default function InputBug() {
       [e.target.id]: e.target.value,
     });
   };
+  console.log(bugValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,7 +72,14 @@ export default function InputBug() {
       compId: bugValues.bugCompId,
     };
     dispatchBug(addBugAction(newBug));
+    dispatchBug(selectBugAction(newBug));
     setBugValues(initState);
+  };
+
+  const handleClick = () => {
+    // makeRequest();
+    // revLocation();
+    makeRequestXhr();
   };
 
   return (
@@ -125,6 +138,25 @@ export default function InputBug() {
           >
             Submit
             <BugReportIcon />
+          </Button>
+          <TextField
+            id="bugSearch"
+            label="Search Naver"
+            variant="outlined"
+            required
+            value={bugValues.bugSearch}
+            onChange={handleOnChange}
+            className={classes.margin}
+          />
+
+          <Button
+            className={classes.margin}
+            type="submit"
+            variant="outlined"
+            color="secondary"
+            onClick={handleClick}
+          >
+            Naver API
           </Button>
         </form>
       </CardContent>
