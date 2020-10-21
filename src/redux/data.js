@@ -70,4 +70,6 @@ export const initialState = {
     },
   ],
   company: {},
+  searchResults: [],
+  searchResult: {},
 };
