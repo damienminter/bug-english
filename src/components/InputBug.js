@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
-import makeRequest from "../naver/location";
-import revLocation from "../naver/revLocation";
-import makeRequestXhr from "../naver/location copy 2";
-// import { Link } from "react-router-dom";
+// import makeRequestXhr from "../naver/location copy 2";
+import CompanySearch from "../components/company/CompanySearch";
+import useNaver from "../naver/useNaver";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -47,10 +46,11 @@ export default function InputBug() {
     bugName: "",
     bugDescription: "",
     bugCompId: "0",
-    bugSearch: "",
   };
   const [bugValues, setBugValues] = useState(initState);
-  // const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
+
+  useNaver(search);
 
   const handleOnChange = (e) => {
     setBugValues({
@@ -58,7 +58,6 @@ export default function InputBug() {
       [e.target.id]: e.target.value,
     });
   };
-  console.log(bugValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,11 +75,11 @@ export default function InputBug() {
     setBugValues(initState);
   };
 
-  const handleClick = () => {
-    // makeRequest();
-    // revLocation();
-    makeRequestXhr();
+  // was looking to use the change to fire the api
+  const handleNaverSearchChange = (e) => {
+    setSearch(e.target.value);
   };
+  // console.log("search Changed");
 
   return (
     <Card className={classes.root}>
@@ -139,26 +138,18 @@ export default function InputBug() {
             Submit
             <BugReportIcon />
           </Button>
-          <TextField
-            id="bugSearch"
-            label="Search Naver"
-            variant="outlined"
-            required
-            value={bugValues.bugSearch}
-            onChange={handleOnChange}
-            className={classes.margin}
-          />
-
-          <Button
-            className={classes.margin}
-            type="submit"
-            variant="outlined"
-            color="secondary"
-            onClick={handleClick}
-          >
-            Naver API
-          </Button>
         </form>
+        <TextField
+          id="bugSearch"
+          label="Search Naver"
+          variant="outlined"
+          required
+          value={search}
+          onChange={handleNaverSearchChange}
+          className={classes.margin}
+        />
+
+        <CompanySearch />
       </CardContent>
     </Card>
   );
