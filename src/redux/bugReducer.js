@@ -33,13 +33,13 @@ export default function bugReducer(state = initialState, action) {
         ),
       };
     case SEARCH_NAVER:
-      console.log("REDUCER FIRED");
       return {
         ...state,
         searchResults: action.payload,
         ...state.searchResults,
       };
     case SELECT_NAVER:
+      console.log("REDUCER FIRED");
       return {
         ...state,
         searchResult: action.payload,

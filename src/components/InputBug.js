@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-// import makeRequestXhr from "../naver/location copy 2";
-import CompanySearch from "../components/company/CompanySearch";
-import useNaver from "../naver/useNaver";
+import NaverSearch from "../naver/NaverSearch";
+import CompanySearchResults from "../components/company/CompanySearchResults";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -48,9 +47,8 @@ export default function InputBug() {
     bugCompId: "0",
   };
   const [bugValues, setBugValues] = useState(initState);
-  const [search, setSearch] = useState("");
 
-  useNaver(search);
+  console.log("render");
 
   const handleOnChange = (e) => {
     setBugValues({
@@ -73,11 +71,6 @@ export default function InputBug() {
     dispatchBug(addBugAction(newBug));
     dispatchBug(selectBugAction(newBug));
     setBugValues(initState);
-  };
-
-  // was looking to use the change to fire the api
-  const handleNaverSearchChange = (e) => {
-    setSearch(e.target.value);
   };
 
   return (
@@ -128,6 +121,8 @@ export default function InputBug() {
             onChange={handleOnChange}
             className={classes.margin}
           />
+          <NaverSearch />
+          <CompanySearchResults />
           <Button
             className={classes.margin}
             type="submit"
@@ -138,17 +133,6 @@ export default function InputBug() {
             <BugReportIcon />
           </Button>
         </form>
-        <TextField
-          id="bugSearch"
-          label="Search Naver"
-          variant="outlined"
-          required
-          value={search}
-          onChange={handleNaverSearchChange}
-          className={classes.margin}
-        />
-
-        <CompanySearch />
       </CardContent>
     </Card>
   );

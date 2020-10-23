@@ -13,7 +13,7 @@ const useNaver = (input) => {
 
   const config = {
     method: "get",
-    url: `https://map.naver.com/v5/api/search?caller=pcweb&query=${input}&type=all&searchCoord=127.01173782348604;37.496686389783726&page=1&displayCount=5&isPlaceRecommendationReplace=true&lang=en`,
+    url: `https://map.naver.com/v5/api/search?caller=pcweb&query=${input}&type=all&searchCoord=127.01173782348604;37.496686389783726&page=1&displayCount=20&isPlaceRecommendationReplace=true&lang=en`,
 
     headers: {
       accept: "application/json, text/plain, */*",
@@ -34,8 +34,6 @@ const useNaver = (input) => {
 
       dispatchPlace(searchNaverAction(naverResult));
       console.log(naverResult);
-
-      // setProgress(naverResult);
     } catch (error) {
       // Handle Error
       alert(error);

@@ -27,16 +27,15 @@ export const selectCompanyAction = (compId) => {
 };
 
 export const searchNaverAction = (place) => {
-  console.log("ACTION FIRED");
   return {
     type: "SEARCH_NAVER",
     payload: place,
   };
 };
 
-export const selectNaverAction = (placeId) => {
+export const selectNaverAction = (place) => {
   return {
     type: "SELECT_NAVER",
-    payload: placeId,
+    payload: place,
   };
 };
