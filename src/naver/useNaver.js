@@ -1,8 +1,12 @@
-// https://www.robinwieruch.de/react-hooks-fetch-data
 import { useEffect } from "react";
 import { searchNaverAction } from "../redux/actions";
 import { useDispatch } from "react-redux";
 const axios = require("axios");
+
+// TO DO:
+
+// 1. Remove coords or update based on person location
+// 2. Clear linting error
 
 const useNaver = (input) => {
   const dispatchPlace = useDispatch();
