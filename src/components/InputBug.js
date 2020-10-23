@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 // import makeRequestXhr from "../naver/location copy 2";
 import CompanySearch from "../components/company/CompanySearch";
@@ -79,7 +79,6 @@ export default function InputBug() {
   const handleNaverSearchChange = (e) => {
     setSearch(e.target.value);
   };
-  // console.log("search Changed");
 
   return (
     <Card className={classes.root}>

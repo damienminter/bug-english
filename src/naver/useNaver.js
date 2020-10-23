@@ -1,13 +1,11 @@
 // https://www.robinwieruch.de/react-hooks-fetch-data
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { searchNaverAction } from "../redux/actions";
 import { useDispatch } from "react-redux";
 const axios = require("axios");
 
 const useNaver = (input) => {
-  // const [progress, setProgress] = useState();
   const dispatchPlace = useDispatch();
-  // const [query, setQuery] = useState("beer");
 
   const config = {
     method: "get",
@@ -24,15 +22,14 @@ const useNaver = (input) => {
     referrer: "https://map.naver.com/",
   };
 
-  // useEffect(() => {
   const fetchResults = async () => {
-    console.log(config.url);
+    if (!input) return;
     try {
       const res = await axios(config);
       const naverResult = res.data.result.place.list;
 
       dispatchPlace(searchNaverAction(naverResult));
-      // console.log(naverResult);
+      console.log(naverResult);
 
       // setProgress(naverResult);
     } catch (error) {
@@ -43,7 +40,7 @@ const useNaver = (input) => {
 
   useEffect(() => {
     fetchResults();
-  }, [config]);
+  }, [config, fetchResults]);
 };
 
 export default useNaver;
