@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import NaverSearch from "../naver/NaverSearch";
-import CompanySearchResults from "../components/company/CompanySearchResults";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,6 +15,7 @@ import BugReportIcon from "@material-ui/icons/BugReport";
 //Redux
 import { useDispatch } from "react-redux";
 import { addBugAction, selectBugAction } from "../redux/actions";
+import NaverSearchContainer from "../naver/NaverSearchContainer";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -121,8 +120,8 @@ export default function InputBug() {
             onChange={handleOnChange}
             className={classes.margin}
           />
-          <NaverSearch />
-          <CompanySearchResults />
+
+          <NaverSearchContainer />
           <Button
             className={classes.margin}
             type="submit"

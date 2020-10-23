@@ -31,7 +31,6 @@ export default function NaverSearch() {
 
   useNaver(search);
 
-  // was looking to use the change to fire the api
   const handleNaverSearchChange = (e) => {
     setSearch(e.target.value);
   };

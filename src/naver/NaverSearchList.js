@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { selectNaverAction } from "../../redux/actions";
+import { selectNaverAction } from "../redux/actions";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,7 +14,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 // import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import Card from "@material-ui/core/Card";
 
 const useStyles = makeStyles({
   table: {
@@ -22,29 +21,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CompanySearchResults() {
-  const [selected, setSelected] = useState("");
+export default function NaverSearchList() {
   const searchResults = useSelector((state) => state.searchResults);
   const dispatchPlace = useDispatch();
 
   const classes = useStyles();
 
   const handleSelectCompany = (result) => {
-    setSelected(result);
     dispatchPlace(selectNaverAction(result));
   };
 
-  if (selected) {
-    return (
-      <Card>
-        <div>{selected.name}</div>
-        <div>{selected.display}</div>
-        <div>{selected.homepage}</div>
-        <div>{selected.telDisplay}</div>
-        <div>{selected.bizhourInfo}</div>
-      </Card>
-    );
-  }
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
