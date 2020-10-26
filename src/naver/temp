@@ -1,0 +1,24 @@
+fetch("
+
+ url = `https://map.naver.com/v5/api/instantSearch?lang=ko&caller=pcweb&types=place,address,bus&coords=37.47795734351527,126.95764303207399&query={query}`, 
+https://map.naver.com/v5/api/instantSearch?lang=ko&caller=pcweb&types=place,address,bus&coords=37.47795734351527,126.95764303207399&query={query}", 
+
+{
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4",
+    "cache-control": "no-cache",
+    "content-type": "application/json",
+    "expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+    "pragma": "no-cache",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin"
+  },
+  "referrer": "https://map.naver.com/",
+  "referrerPolicy": "origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "include"
+});

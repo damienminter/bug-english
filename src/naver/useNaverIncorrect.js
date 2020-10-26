@@ -8,7 +8,7 @@ const axios = require("axios");
 // 1. Remove coords or update based on person location
 // 2. Clear linting error
 
-const useNaver = (input) => {
+const useNaverIncorrect = (input) => {
   const dispatchPlace = useDispatch();
 
   const config = {
@@ -33,7 +33,6 @@ const useNaver = (input) => {
       const naverResult = res.data.result.place.list;
 
       dispatchPlace(searchNaverAction(naverResult));
-      console.log(naverResult);
     } catch (error) {
       // Handle Error
       alert(error);

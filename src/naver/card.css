@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+img {
+  height: 96px;
+  width: 96px;
+  border-radius: 4px;
+}
+
+h2 {
+  margin: 0;
+  text-align: left;
+}
+
+h4 {
+  margin: 0;
+  text-align: left;
+  color: plum;
+}
+
+.card_mui {
+  padding: 18.5px 14px;
+  border: 1.3px solid lightgray;
+  margin: 1rem 8px;
+  border-radius: 4px;
+}
+
+.gridCol4 {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 8px;
+  justify-content: center;
+}
+
+.gridCol2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  justify-content: center;
+}
+
+.grid-item1 {
+  /* background-color: lightgray; */
+}
+
+.grid-item2 {
+  /* background-color: pink; */
+}

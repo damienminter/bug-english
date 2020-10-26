@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import BugReportIcon from "@material-ui/icons/BugReport";
 
 //Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addBugAction, selectBugAction } from "../redux/actions";
 import NaverSearchContainer from "../naver/NaverSearchContainer";
 
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 export default function InputBug() {
   const classes = useStyles();
   const dispatchBug = useDispatch();
+  const place = useSelector((state) => state.searchResult);
 
   const initState = {
     bugName: "",
@@ -46,8 +47,6 @@ export default function InputBug() {
     bugCompId: "0",
   };
   const [bugValues, setBugValues] = useState(initState);
-
-  console.log("render");
 
   const handleOnChange = (e) => {
     setBugValues({
@@ -65,11 +64,12 @@ export default function InputBug() {
       name: bugValues.bugName,
       img: "url of the image",
       description: bugValues.bugDescription,
-      compId: bugValues.bugCompId,
+      compId: place.id,
     };
     dispatchBug(addBugAction(newBug));
     dispatchBug(selectBugAction(newBug));
     setBugValues(initState);
+    console.log(newBug);
   };
 
   return (
@@ -106,12 +106,12 @@ export default function InputBug() {
             variant="outlined"
             required
             multiline
-            rowsMax={8}
+            rows={8}
             value={bugValues.bugDescription}
             onChange={handleOnChange}
             className={classes.margin}
           />
-          <TextField
+          {/* <TextField
             id="bugCompId"
             label="Company Id"
             variant="outlined"
@@ -119,7 +119,7 @@ export default function InputBug() {
             value={bugValues.bugCompId}
             onChange={handleOnChange}
             className={classes.margin}
-          />
+          /> */}
 
           <NaverSearchContainer />
           <Button

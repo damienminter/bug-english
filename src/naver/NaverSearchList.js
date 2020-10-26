@@ -31,30 +31,24 @@ export default function NaverSearchList() {
   const handleSelectCompany = (result) => {
     dispatchPlace(selectNaverAction(result));
     setComp(result);
-    console.log(comp);
   };
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        {/* <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell align="right">Name</TableCell>
-          </TableRow>
-        </TableHead> */}
         <TableBody>
-          {searchResults.map((result) => (
-            <TableRow
-              key={result.id}
-              onClick={handleSelectCompany.bind(null, result)}
-            >
-              <TableCell component="th" scope="row">
-                {result.name}
-              </TableCell>
-              <TableCell align="right">{result.address}</TableCell>
-            </TableRow>
-          ))}
+          {searchResults &&
+            searchResults.map((result) => (
+              <TableRow
+                key={result.id}
+                onClick={handleSelectCompany.bind(null, result)}
+              >
+                <TableCell component="th" scope="row">
+                  {result.name}
+                </TableCell>
+                <TableCell align="right">{result.address}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

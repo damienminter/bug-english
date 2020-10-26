@@ -36,10 +36,8 @@ export default function bugReducer(state = initialState, action) {
       return {
         ...state,
         searchResults: action.payload,
-        ...state.searchResults,
       };
     case SELECT_NAVER:
-      console.log("REDUCER FIRED");
       return {
         ...state,
         searchResult: action.payload,
