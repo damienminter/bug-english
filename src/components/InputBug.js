@@ -44,7 +44,6 @@ export default function InputBug() {
   const initState = {
     bugName: "",
     bugDescription: "",
-    bugCompId: "0",
   };
   const [bugValues, setBugValues] = useState(initState);
 
@@ -61,7 +60,7 @@ export default function InputBug() {
       id: uuidv4(),
       // timeStamp: new Date(),
       timeStamp: "10.30",
-      name: bugValues.bugName,
+      name: place.name,
       img: "url of the image",
       description: bugValues.bugDescription,
       compId: place.id,
@@ -91,7 +90,7 @@ export default function InputBug() {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-          <TextField
+          {/* <TextField
             id="bugName"
             label="Bug Name"
             variant="outlined"
@@ -99,7 +98,7 @@ export default function InputBug() {
             value={bugValues.bugName}
             onChange={handleOnChange}
             className={classes.margin}
-          />
+          /> */}
           <TextField
             id="bugDescription"
             label="Description"
@@ -111,15 +110,6 @@ export default function InputBug() {
             onChange={handleOnChange}
             className={classes.margin}
           />
-          {/* <TextField
-            id="bugCompId"
-            label="Company Id"
-            variant="outlined"
-            required
-            value={bugValues.bugCompId}
-            onChange={handleOnChange}
-            className={classes.margin}
-          /> */}
 
           <NaverSearchContainer />
           <Button

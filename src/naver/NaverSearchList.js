@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { selectNaverAction } from "../redux/actions";
+import { selectNaverAction, searchNaverAction } from "../redux/actions";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -31,6 +31,7 @@ export default function NaverSearchList() {
   const handleSelectCompany = (result) => {
     dispatchPlace(selectNaverAction(result));
     setComp(result);
+    dispatchPlace(searchNaverAction());
   };
 
   return (

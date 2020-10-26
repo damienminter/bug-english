@@ -98,15 +98,21 @@ export default function ItemBug(props) {
         title={bug.name}
         subheader="September 14, 2016"
       />
-      <CardMedia
+      {/* <CardMedia
         className={classes.media}
         image="../images/beware.jpeg"
         title="beware"
-      />
+      /> */}
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {bug.description}
-        </Typography>
+        <div>
+          <span>
+            <h1>"</h1>
+            <Typography variant="body1" color="textSecondary" component="p">
+              {bug.description}
+            </Typography>
+            <h1>"</h1>
+          </span>
+        </div>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
