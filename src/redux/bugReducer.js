@@ -3,6 +3,7 @@ import {
   ADD_BUG,
   SELECT_BUG,
   FILTER_BUGS,
+  ADD_COMPANY,
   SELECT_COMPANY,
   SEARCH_NAVER,
   SELECT_NAVER,
@@ -29,8 +30,15 @@ export default function bugReducer(state = initialState, action) {
       return {
         ...state,
         company: state.companies.find(
-          (company) => company.id === action.payload
+          (company) => company.id == action.payload
         ),
+      };
+    case ADD_COMPANY:
+      return {
+        ...state,
+        companies: state.companies.some((comp) => comp.id == action.payload.id)
+          ? [...state.companies]
+          : [...state.companies, action.payload],
       };
     case SEARCH_NAVER:
       return {

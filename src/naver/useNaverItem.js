@@ -1,21 +1,17 @@
 import { useEffect } from "react";
-import { searchNaverAction } from "../redux/actions";
 import { useDispatch } from "react-redux";
+import { addCompanyAction } from "../redux/actions";
 const axios = require("axios");
 
-// TO DO:
-
-// 1. Remove coords or update based on person location
-
-const useNaver = (input) => {
+const useNaverItem = (input) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchResults = async (query) => {
-      if (!query) return;
+    const fetchResults = async (queryId) => {
+      if (!queryId) return;
       const config = {
         method: "get",
-        url: `https://map.naver.com/v5/api/search?caller=pcweb&query=${query}&type=all&searchCoord=127.01173782348604;37.496686389783726&page=1&displayCount=20&isPlaceRecommendationReplace=true&lang=en`,
+        url: `https://map.naver.com/v5/api/sites/summary/${queryId}?lang=en`,
 
         headers: {
           accept: "application/json, text/plain, */*",
@@ -30,15 +26,16 @@ const useNaver = (input) => {
 
       try {
         const res = await axios(config);
-        const naverResult = res.data.result.place.list;
 
-        dispatch(searchNaverAction(naverResult));
+        const naverResultItem = res.data;
+        dispatch(addCompanyAction(naverResultItem));
       } catch (error) {
-        dispatch(searchNaverAction());
+        // dispatch(addCompanyAction());
+        console.log(error);
       }
     };
     fetchResults(input);
   }, [input, dispatch]);
 };
 
-export default useNaver;
+export default useNaverItem;

@@ -23,6 +23,7 @@ export default function Company() {
         {Object.keys(comp).length > 0 && (
           <div>
             <CompanyInformation comp={comp} />
+            {/* <NaverSearchItem comp={comp} /> */}
             <CompanyListBug compBugs={compBugs} />
           </div>
         )}

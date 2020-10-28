@@ -10,7 +10,6 @@ import { red } from "@material-ui/core/colors";
 // Redux
 import { useDispatch } from "react-redux";
 import { selectCompanyAction, filterBugsAction } from "../../redux/actions";
-// import useNaverItem from "../../naver/useNaverItem";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -18,13 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CompanyLogo({ compId }) {
-  console.log("COMPANY LOGO FIRED");
-  console.log(compId);
+export default function CompanyLogoCopy({ compId }) {
   const classes = useStyles();
   const dispatchCompany = useDispatch();
   const dispatchFilterBugs = useDispatch();
-  // useNaverItem(compId);
 
   const handleSelectCompany = (compId) => {
     dispatchCompany(selectCompanyAction(compId));

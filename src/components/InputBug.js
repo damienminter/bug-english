@@ -68,7 +68,6 @@ export default function InputBug() {
     dispatchBug(addBugAction(newBug));
     dispatchBug(selectBugAction(newBug));
     setBugValues(initState);
-    console.log(newBug);
   };
 
   return (
@@ -117,6 +116,8 @@ export default function InputBug() {
             type="submit"
             variant="outlined"
             color="secondary"
+            // component={Link}
+            // to={"/"}
           >
             Submit
             <BugReportIcon />

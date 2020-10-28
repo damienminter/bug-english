@@ -19,6 +19,13 @@ export const filterBugsAction = (compId) => {
   };
 };
 
+export const addCompanyAction = (compId) => {
+  return {
+    type: "ADD_COMPANY",
+    payload: compId,
+  };
+};
+
 export const selectCompanyAction = (compId) => {
   return {
     type: "SELECT_COMPANY",

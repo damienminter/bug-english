@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 // Redux
@@ -24,13 +24,13 @@ const useStyles = makeStyles({
 export default function NaverSearchList() {
   const searchResults = useSelector((state) => state.searchResults);
   const dispatchPlace = useDispatch();
-  const [comp, setComp] = useState("");
+  // const [comp, setComp] = useState("");
 
   const classes = useStyles();
 
   const handleSelectCompany = (result) => {
     dispatchPlace(selectNaverAction(result));
-    setComp(result);
+    // setComp(result);
     dispatchPlace(searchNaverAction());
   };
 

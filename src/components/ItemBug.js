@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
+// import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
@@ -25,6 +25,7 @@ import CompanyLogo from "../components/company/CompanyLogo";
 //Redux
 import { useDispatch } from "react-redux";
 import { selectBugAction } from "../redux/actions";
+import useNaverItem from "../naver/useNaverItem";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -53,9 +54,11 @@ const useStyles = makeStyles((theme) => ({
 // Component
 export default function ItemBug(props) {
   const { bug } = props;
+  const comp = bug.compId;
   const dispatchBug = useDispatch();
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
+  useNaverItem(comp);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -66,25 +69,10 @@ export default function ItemBug(props) {
     dispatchBug(selectBugAction(bug));
   };
 
-  // const handleSelectCompany = (bug) => {
-  //   dispatchBug(selectBugAction(bug));
-  // };
-
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <CompanyLogo compId={bug.compId} />
-          // <Avatar
-          //   aria-label="recipe"
-          //   className={classes.avatar}
-          //   onClick={handleSelectCompany.bind(null, bug)}
-          //   component={Link}
-          //   to={"/company"}
-          // >
-          //   <BugReportIcon />
-          // </Avatar>
-        }
+        avatar={<CompanyLogo compId={bug.compId} />}
         action={
           <IconButton
             aria-label="settings"
