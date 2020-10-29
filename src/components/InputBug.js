@@ -16,6 +16,7 @@ import BugReportIcon from "@material-ui/icons/BugReport";
 import { useDispatch, useSelector } from "react-redux";
 import { addBugAction, selectBugAction } from "../redux/actions";
 import NaverSearchContainer from "../naver/NaverSearchContainer";
+import ProgressBar from "../firebase/ProgressBar";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -37,15 +38,32 @@ const useStyles = makeStyles((theme) => ({
 
 // Component
 export default function InputBug() {
+  //Photo
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+  const types = ["image/png", "image/jpeg"];
+
   const classes = useStyles();
   const dispatchBug = useDispatch();
   const place = useSelector((state) => state.searchResult);
 
   const initState = {
-    bugName: "",
+    bugImgUrl: "",
     bugDescription: "",
   };
   const [bugValues, setBugValues] = useState(initState);
+
+  const handleChangePhoto = (e) => {
+    let selected = e.target.files[0];
+
+    if (selected && types.includes(selected.type)) {
+      setFile(selected);
+      setError("");
+    } else {
+      setFile(null);
+      setError("Please select an image file (png or jpg)");
+    }
+  };
 
   const handleOnChange = (e) => {
     setBugValues({
@@ -89,15 +107,16 @@ export default function InputBug() {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-          {/* <TextField
-            id="bugName"
-            label="Bug Name"
-            variant="outlined"
-            required
-            value={bugValues.bugName}
-            onChange={handleOnChange}
-            className={classes.margin}
-          /> */}
+          <label>
+            <input type="file" onChange={handleChangePhoto} />
+            <span>+</span>
+          </label>
+          <div className="output">
+            {error && <div className="error">{error}</div>}
+            {file && <div>{file.name}</div>}
+            {file && <ProgressBar file={file} setFile={setFile} />}
+          </div>
+
           <TextField
             id="bugDescription"
             label="Description"

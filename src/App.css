@@ -84,3 +84,10 @@
   margin-top: 1rem;
   max-width: 90%;
 }
+
+/* progress bar styles */
+.progress-bar {
+  height: 5px;
+  background: green;
+  margin-top: 20px;
+}
