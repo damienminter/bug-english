@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -39,8 +39,10 @@ const useStyles = makeStyles((theme) => ({
 // Component
 export default function InputBug() {
   //Photo
-  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
   const [error, setError] = useState(null);
+  const [file, setFile] = useState(null);
   const types = ["image/png", "image/jpeg"];
 
   const classes = useStyles();
@@ -57,10 +59,11 @@ export default function InputBug() {
     let selected = e.target.files[0];
 
     if (selected && types.includes(selected.type)) {
-      setFile(selected);
+      setImage(selected);
+      setPreview(URL.createObjectURL(selected));
       setError("");
     } else {
-      setFile(null);
+      setPreview(null);
       setError("Please select an image file (png or jpg)");
     }
   };
@@ -75,14 +78,17 @@ export default function InputBug() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newBug = {
-      id: uuidv4(),
+      // id: uuidv4(),
       // timeStamp: new Date(),
-      timeStamp: "10.30",
-      name: place.name,
-      img: "url of the image",
+      // timeStamp: "10.30",
+      img: bugValues.bugImgUrl,
       description: bugValues.bugDescription,
+      name: place.name,
       compId: place.id,
     };
+
+    setFile(image);
+
     dispatchBug(addBugAction(newBug));
     dispatchBug(selectBugAction(newBug));
     setBugValues(initState);
@@ -113,11 +119,30 @@ export default function InputBug() {
           </label>
           <div className="output">
             {error && <div className="error">{error}</div>}
-            {file && <div>{file.name}</div>}
-            {file && <ProgressBar file={file} setFile={setFile} />}
+            {preview && (
+              <img
+                src={preview}
+                alt={preview.name}
+                className="main-image"
+              ></img>
+            )}
+            {preview && <div>{preview.name}</div>}
+            {!preview && (
+              <TextField
+                id="bugDescription"
+                label="Description"
+                variant="outlined"
+                required
+                multiline
+                rows={8}
+                value={bugValues.bugDescription}
+                onChange={handleOnChange}
+                className={classes.margin}
+              />
+            )}
           </div>
 
-          <TextField
+          {/* <TextField
             id="bugDescription"
             label="Description"
             variant="outlined"
@@ -127,9 +152,10 @@ export default function InputBug() {
             value={bugValues.bugDescription}
             onChange={handleOnChange}
             className={classes.margin}
-          />
+          /> */}
 
           <NaverSearchContainer />
+          {file && <ProgressBar file={file} setFile={setFile} />}
           <Button
             className={classes.margin}
             type="submit"

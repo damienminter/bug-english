@@ -8,6 +8,12 @@ img {
   border-radius: 4px;
 }
 
+.main-image {
+  height: 300px;
+  width: 400px;
+  object-fit: cover;
+}
+
 h2 {
   margin: 0;
   text-align: left;

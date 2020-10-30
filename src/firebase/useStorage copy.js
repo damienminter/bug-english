@@ -1,27 +1,19 @@
 import { useState, useEffect } from "react";
 import {
   projectStorage,
-  // projectFirestore,
-  // timestamp,
+  projectFirestore,
+  timestamp,
 } from "../firebase/config";
-import usePostBug from "../bugs/usePostBug";
-
-// 1. Take the Description from inout screen OR
-// 1. URL from from server
-// 2. Take Naver id and name from input screen
-// 3. Get UUID from server
-// 4. Get Timestamp from server
 
 const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
-  const post = usePostBug(url);
 
   useEffect(() => {
     // references
     const storageRef = projectStorage.ref(file.name);
-    // const collectionRef = projectFirestore.collection("images");
+    const collectionRef = projectFirestore.collection("images");
 
     storageRef.put(file).on(
       "state_changed",
@@ -33,8 +25,10 @@ const useStorage = (file) => {
         setError(err);
       },
       async () => {
-        const imgUrl = await storageRef.getDownloadURL();
-        setUrl(imgUrl);
+        const url = await storageRef.getDownloadURL();
+        const createdAt = timestamp();
+        await collectionRef.add({ url, createdAt });
+        setUrl(url);
       }
     );
   }, [file]);
