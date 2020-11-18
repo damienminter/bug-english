@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-// import { v4 as uuidv4 } from "uuid";
+import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,7 +16,11 @@ import BugReportIcon from "@material-ui/icons/BugReport";
 import { useDispatch, useSelector } from "react-redux";
 import { addBugAction, selectBugAction } from "../redux/actions";
 import NaverSearchContainer from "../naver/NaverSearchContainer";
+import NaverSearchItem from "../naver/NaverSearchItem";
 import ProgressBar from "../firebase/ProgressBar";
+import useStorage from "../firebase/useStorage";
+
+import InputType from "./InputType";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -36,62 +40,120 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Component
+// TO DO
+// 1 Option to upload a photo or add description
+// - Set state for choice API
+// - Set state for thubnail pic
+// - Set state for description
+// 2 Search for company information
+// 3 Select Company - set local state to company id / name
+
+// ON SUBMIT
+// 4 Upload photo = set state URL
+// - Set state for progress bar (errors percentage)
+// - Set state for choice API
+// 5 Upload new bug to Firestore - Set global state to newbug
+// 6 Reset local compoent value
+
 export default function InputBug() {
-  //Photo
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const [error, setError] = useState(null);
-  const [file, setFile] = useState(null);
+  // Material UI
+  const classes = useStyles();
+
+  // Component state
+  const [submit, setSubmit] = useState(null); // api choice - photo/text
+  const [preview, setPreview] = useState(null); // photo thubnail
+  const [imageUrl, setImageUrl] = useState(null); // address of image
+  const [bugText, setBugText] = useState(""); // description
+  // const [error, setError] = useState(null);
+  const [file, setFile] = useState(null); // File to upload to storage
+  const [place, setPlace] = useState({});
+  const [uploadUrl, setUploadUrl] = useState({});
+
+  const { progress, url, error } = useStorage(file);
+
+  // Central State
+  // const dispatchBug = useDispatch();
+  const searchResult = useSelector((state) => state.searchResult);
+
+  // Validation
   const types = ["image/png", "image/jpeg"];
 
-  const classes = useStyles();
-  const dispatchBug = useDispatch();
-  const place = useSelector((state) => state.searchResult);
-
-  const initState = {
-    bugImgUrl: "",
-    bugDescription: "",
-  };
-  const [bugValues, setBugValues] = useState(initState);
-
+  // Add Photo to UI
   const handleChangePhoto = (e) => {
     let selected = e.target.files[0];
 
     if (selected && types.includes(selected.type)) {
-      setImage(selected);
+      // setImageUrl(selected);
+      console.log(imageUrl);
       setPreview(URL.createObjectURL(selected));
-      setError("");
+
+      setSubmit("photo");
+      setBugText("");
+      // setError("");
     } else {
       setPreview(null);
-      setError("Please select an image file (png or jpg)");
+      // setError("Please select an image file (png or jpg)");
     }
   };
 
+  // Add Text to UI
   const handleOnChange = (e) => {
-    setBugValues({
-      ...bugValues,
+    setBugText({
+      ...bugText,
       [e.target.id]: e.target.value,
     });
+    setSubmit("text");
   };
 
+  // clean up file once file is uploaded
+  useEffect(() => {
+    if (url) {
+      setFile(null);
+    }
+  }, [url]);
+
+  // Update the company infomation with store result from naver search
+  useEffect(() => {
+    setPlace(searchResult);
+  }, [searchResult]);
+
+  // Submit bug
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newBug = {
-      // id: uuidv4(),
-      // timeStamp: new Date(),
-      // timeStamp: "10.30",
-      img: bugValues.bugImgUrl,
-      description: bugValues.bugDescription,
-      name: place.name,
-      compId: place.id,
-    };
+    // 1. Validate fields are filled in
+    // 2. Check if image (if not skip step)
+    if (submit === "photo" && imageUrl !== null) {
+      // 3. Upload the photo to Storage
+      const addPhoto = () => {
+        console.log(imageUrl);
+        setFile(preview); // This should trigger upload
+        console.log("url");
+        console.log(url);
+        console.log("error");
+        console.log(error);
+        console.log("progress");
+        console.log(progress);
+        setSubmit("text");
+      };
+      addPhoto();
+    }
+    if (submit === "text") {
+      console.log("Submitting Text");
 
-    setFile(image);
-
-    dispatchBug(addBugAction(newBug));
-    dispatchBug(selectBugAction(newBug));
-    setBugValues(initState);
+      const newBug = {
+        id: uuidv4(),
+        // timeStamp: new Date(),
+        img: url,
+        description: bugText,
+        name: place.name,
+        compId: place.id,
+      };
+      console.log("New Bug");
+      console.log(newBug);
+    }
+    // 1. Post BUG to FireStore
+    // 3. Add URL to bug object
+    // 4.
   };
 
   return (
@@ -105,7 +167,7 @@ export default function InputBug() {
         title={"Bug English"}
         subheader="Enter a new Bug"
       />
-
+      <InputType />
       <CardContent>
         <form
           className={classes.root}
@@ -135,27 +197,15 @@ export default function InputBug() {
                 required
                 multiline
                 rows={8}
-                value={bugValues.bugDescription}
+                value={bugText}
                 onChange={handleOnChange}
                 className={classes.margin}
               />
             )}
           </div>
-
-          {/* <TextField
-            id="bugDescription"
-            label="Description"
-            variant="outlined"
-            required
-            multiline
-            rows={8}
-            value={bugValues.bugDescription}
-            onChange={handleOnChange}
-            className={classes.margin}
-          /> */}
-
+          {place && <NaverSearchItem place={place} />}
           <NaverSearchContainer />
-          {file && <ProgressBar file={file} setFile={setFile} />}
+          {file && <ProgressBar progress={progress} />}
           <Button
             className={classes.margin}
             type="submit"
