@@ -16,9 +16,9 @@ const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
-  const post = usePostBug(url);
 
   useEffect(() => {
+    if (!file) return;
     // references
     const storageRef = projectStorage.ref(file.name);
     // const collectionRef = projectFirestore.collection("images");
