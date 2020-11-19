@@ -24,13 +24,11 @@ const useStyles = makeStyles({
 export default function NaverSearchList() {
   const searchResults = useSelector((state) => state.searchResults);
   const dispatchPlace = useDispatch();
-  // const [comp, setComp] = useState("");
 
   const classes = useStyles();
 
   const handleSelectCompany = (result) => {
     dispatchPlace(selectNaverAction(result));
-    // setComp(result);
     dispatchPlace(searchNaverAction());
   };
 
