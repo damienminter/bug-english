@@ -87,7 +87,12 @@
 
 /* progress bar styles */
 .progress-bar {
-  height: 5px;
-  background: green;
+  height: 20px;
+  background: pink;
   margin-top: 20px;
+}
+
+.main-image {
+  height: 300px;
+  width: 300px;
 }
