@@ -84,7 +84,7 @@ export default function DetailBug(props) {
         title="beware"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" color="textSecondary" component="span">
           {bug.description}
         </Typography>
       </CardContent>
