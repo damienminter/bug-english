@@ -25,19 +25,23 @@ export default function InputTypeWrite({ input, setInput }) {
   //   const [input, setInput] = useState("");
 
   const handleOnChange = (e) => {
-    setInput(e.target.value);
+    setInput({
+      ...input,
+      [e.target.id]: e.target.value,
+    });
+    // setSubmit("text");
   };
 
   return (
     <div>
       <TextField
-        id="bugDescription"
+        id="typeText"
         label="Description"
         variant="outlined"
         required
         multiline
         rows={8}
-        value={input}
+        value={input.typeText}
         onChange={handleOnChange}
         className={classes.margin}
       />

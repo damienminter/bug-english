@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 export default function InputTypeUrl({ input, setInput }) {
   const classes = useStyles();
   const [preview, setPreview] = useState("");
+  //   const [error, setError] = useState(null);
   //   proxy = "https://cors-anywhere.herokuapp.com/";
   const url = `https://cors-anywhere.herokuapp.com/https://www.youtube.com/watch?v=PW0tlULei9o`;
 

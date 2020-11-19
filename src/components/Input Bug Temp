@@ -1,0 +1,28 @@
+ {/* <label>
+            <input type="file" onChange={handleChangePhoto} />
+            <span>+</span>
+          </label>
+          <div className="output">
+            {error && <div className="error">{error}</div>}
+            {preview && (
+              <img
+                src={preview}
+                alt={preview.name}
+                className="main-image"
+              ></img>
+            )}
+            {preview && <div>{preview.name}</div>}
+            {!preview && (
+              <TextField
+                id="bugDescription"
+                label="Description"
+                variant="outlined"
+                required
+                multiline
+                rows={8}
+                value={bugText}
+                onChange={handleOnChange}
+                className={classes.margin}
+              />
+            )}
+          </div> */}

@@ -8,19 +8,22 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import TextField from "@material-ui/core/TextField";
+// import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import BugReportIcon from "@material-ui/icons/BugReport";
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
-import { addBugAction, selectBugAction } from "../redux/actions";
+// import { addBugAction, selectBugAction } from "../redux/actions";
 import NaverSearchContainer from "../naver/NaverSearchContainer";
 import NaverSearchItem from "../naver/NaverSearchItem";
 import ProgressBar from "../firebase/ProgressBar";
 import useStorage from "../firebase/useStorage";
 
 import InputType from "./InputType";
+import InputTypeWrite from "./InputTypeWrite";
+import InputTypeImage from "./InputTypeImage";
+import InputTypeUrl from "./InputTypeUrl";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -40,70 +43,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// TO DO
-// 1 Option to upload a photo or add description
-// - Set state for choice API
-// - Set state for thubnail pic
-// - Set state for description
-// 2 Search for company information
-// 3 Select Company - set local state to company id / name
-
-// ON SUBMIT
-// 4 Upload photo = set state URL
-// - Set state for progress bar (errors percentage)
-// - Set state for choice API
-// 5 Upload new bug to Firestore - Set global state to newbug
-// 6 Reset local compoent value
+// xxxxxxxxxxxxxxxxxx************** MAIN FUNCTION xxxxxxxxxxxxxxxxxx************** //
 
 export default function InputBug() {
   // Material UI
   const classes = useStyles();
 
   // Component state
-  const [submit, setSubmit] = useState(null); // api choice - photo/text
+  const bugInit = {
+    typeText: "",
+    typeImage: "",
+    typeUrl: "",
+  };
+
+  const [input, setInput] = useState(bugInit);
+  const [submit, setSubmit] = useState("image"); // api choice - photo/text
   const [preview, setPreview] = useState(null); // photo thubnail
   const [imageUrl, setImageUrl] = useState(null); // address of image
-  const [bugText, setBugText] = useState(""); // description
+  // const [bugText, setBugText] = useState(""); // description
   // const [error, setError] = useState(null);
   const [file, setFile] = useState(null); // File to upload to storage
   const [place, setPlace] = useState({});
-  const [uploadUrl, setUploadUrl] = useState({});
+  // const [uploadUrl, setUploadUrl] = useState({});
 
   const { progress, url, error } = useStorage(file);
+
+  console.log("input");
+  console.log(input);
 
   // Central State
   // const dispatchBug = useDispatch();
   const searchResult = useSelector((state) => state.searchResult);
-
-  // Validation
-  const types = ["image/png", "image/jpeg"];
-
-  // Add Photo to UI
-  const handleChangePhoto = (e) => {
-    let selected = e.target.files[0];
-
-    if (selected && types.includes(selected.type)) {
-      // setImageUrl(selected);
-      console.log(imageUrl);
-      setPreview(URL.createObjectURL(selected));
-
-      setSubmit("photo");
-      setBugText("");
-      // setError("");
-    } else {
-      setPreview(null);
-      // setError("Please select an image file (png or jpg)");
-    }
-  };
-
-  // Add Text to UI
-  const handleOnChange = (e) => {
-    setBugText({
-      ...bugText,
-      [e.target.id]: e.target.value,
-    });
-    setSubmit("text");
-  };
 
   // clean up file once file is uploaded
   useEffect(() => {
@@ -120,13 +90,15 @@ export default function InputBug() {
   // Submit bug
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("SUBMITTED");
+    console.log(submit);
     // 1. Validate fields are filled in
     // 2. Check if image (if not skip step)
-    if (submit === "photo" && imageUrl !== null) {
+    if (submit === "image" && imageUrl !== null) {
       // 3. Upload the photo to Storage
       const addPhoto = () => {
         console.log(imageUrl);
-        setFile(preview); // This should trigger upload
+        setFile(input.typeImage); // This should trigger upload
         console.log("url");
         console.log(url);
         console.log("error");
@@ -144,17 +116,16 @@ export default function InputBug() {
         id: uuidv4(),
         // timeStamp: new Date(),
         img: url,
-        description: bugText,
+        description: input.typeText,
         name: place.name,
         compId: place.id,
       };
       console.log("New Bug");
       console.log(newBug);
     }
-    // 1. Post BUG to FireStore
-    // 3. Add URL to bug object
-    // 4.
   };
+
+  // xxxxxxxxxxxxxxxxxx************** RETURN xxxxxxxxxxxxxxxxxx************** //
 
   return (
     <Card className={classes.root}>
@@ -167,7 +138,11 @@ export default function InputBug() {
         title={"Bug English"}
         subheader="Enter a new Bug"
       />
-      <InputType />
+      <InputType
+        typeWrite={<InputTypeWrite input={input} setInput={setInput} />}
+        typeImage={<InputTypeImage input={input} setInput={setInput} />}
+        // typeUrl={<InputTypeUrl input={input} setInput={setInput} />}
+      />
       <CardContent>
         <form
           className={classes.root}
@@ -175,34 +150,6 @@ export default function InputBug() {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-          <label>
-            <input type="file" onChange={handleChangePhoto} />
-            <span>+</span>
-          </label>
-          <div className="output">
-            {error && <div className="error">{error}</div>}
-            {preview && (
-              <img
-                src={preview}
-                alt={preview.name}
-                className="main-image"
-              ></img>
-            )}
-            {preview && <div>{preview.name}</div>}
-            {!preview && (
-              <TextField
-                id="bugDescription"
-                label="Description"
-                variant="outlined"
-                required
-                multiline
-                rows={8}
-                value={bugText}
-                onChange={handleOnChange}
-                className={classes.margin}
-              />
-            )}
-          </div>
           {place && <NaverSearchItem place={place} />}
           <NaverSearchContainer />
           {file && <ProgressBar progress={progress} />}

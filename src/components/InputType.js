@@ -11,10 +11,6 @@ import LinkIcon from "@material-ui/icons/Link";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import CreateIcon from "@material-ui/icons/Create";
 
-import InputTypeWrite from "./InputTypeWrite";
-import InputTypeImage from "./InputTypeImage";
-import InputTypeUrl from "./InputTypeUrl";
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -55,17 +51,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function InputTab() {
+export default function InputTab({ typeWrite, typeImage, typeUrl }) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [input, setInput] = useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  console.log("input");
-  console.log(input);
 
   return (
     <div className={classes.root}>
@@ -86,13 +78,13 @@ export default function InputTab() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <InputTypeWrite input={input} setInput={setInput} />
+        {typeWrite}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <InputTypeImage input={input} setInput={setInput} />
+        {typeImage}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <InputTypeUrl input={input} setInput={setInput} />
+        {typeUrl}
       </TabPanel>
     </div>
   );
