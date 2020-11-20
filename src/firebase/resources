@@ -13,3 +13,7 @@ https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-
 
 // State and Props
 https://www.robinwieruch.de/react-pass-props-to-component
+
+// Lifting state up - Rendering Imapacts
+https://itnext.io/react-lifting-state-up-is-killing-your-app-3ad6f0e1213d
+
