@@ -28,8 +28,9 @@ h4 {
 .card_mui {
   padding: 18.5px 14px;
   border: 1.3px solid lightgray;
-  margin: 1rem 8px;
+  margin: 1rem auto;
   border-radius: 4px;
+  width: 300px;
 }
 
 .gridCol4 {
@@ -38,13 +39,13 @@ h4 {
   gap: 8px;
   justify-content: center;
 }
-
+/* 
 .gridCol2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
   justify-content: center;
-}
+} */
 
 .grid-item1 {
   /* background-color: lightgray; */

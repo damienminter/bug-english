@@ -4,34 +4,31 @@ import "./card.css";
 export default function NaverSearchItem(props) {
   const { place } = props;
 
+  const regex = (target) => target.replace(/(<([^>]+)>)/gi, "");
+
   return (
     <>
       {Object.keys(place).length > 0 && (
         <div className="card_mui">
-          <div className="gridCol4">
-            <img src={place.thumUrl} alt={place.display}></img>
+          <div>
+            {place.thumUrl && (
+              <img src={place.thumUrl} alt={regex(place.display)}></img>
+            )}
             <div>
-              <h2>{place.name}</h2>
-              <h4>{place.display}</h4>
+              <h2>{regex(place.name)}</h2>
+              <h4>{regex(place.display)}</h4>
             </div>
           </div>
-          <div className="gridCol2">
-            <div className="grid-item1">
+          <div>
+            <div>
               <p>{place.address}</p>
               <p>{place.telDisplay}</p>
               <p>{place.bizhourInfo}</p>
               <p>{place.id}</p>
-
-              <p>{place.homepage}</p>
-            </div>
-            <div className="grid-item2">
-              <p>{place.roadAddress}</p>
-              <p>{place.telDisplay}</p>
-              <p>{place.bizhourInfo}</p>
-
               <p>
                 {place.x} {place.y}
               </p>
+              <p>{place.homepage}</p>
             </div>
           </div>
         </div>
