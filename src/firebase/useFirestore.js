@@ -5,6 +5,9 @@ const useFirestore = (collection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
+    if (!collection) return;
+
+    console.log(collection);
     const unsub = projectFirestore
       .collection(collection)
       .orderBy("createdAt", "desc")

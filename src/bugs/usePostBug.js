@@ -1,38 +1,25 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { projectFirestore, timestamp } from "../firebase/config";
 
-const usePostBug = (url) => {
-  const newBug = {
-    description: "testing testing testing",
-    url: url,
-    compId: "11764793",
-    compName: "testComp",
-  };
+const usePostBug = (bug) => {
+  const [msg, setMsg] = useState(null);
 
   useEffect(() => {
+    if (!bug) return;
+    setMsg("adding to database");
+    console.log(bug);
     // references
-    const collectionRef = projectFirestore.collection("images");
+    const collectionRef = projectFirestore.collection("BUGENGLISH_BUGS");
 
     const postData = async () => {
-      console.log(newBug);
       const createdAt = timestamp();
-      await collectionRef.add({ newBug, createdAt });
+      await collectionRef.add(bug, createdAt);
+      setMsg("Success");
     };
-    postData(url);
-  }, [url, newBug]);
+    postData(bug);
+  }, [bug]);
 
-  return url;
+  return { msg };
 };
-// console.log("this is a new bug ")
-
-// // need to look at how the bug is being added to firebase as I am just trying to create an object
-
-//     // id: AUTOMATICALLY FROM FIREBASE
-//     timeStamp: createdAt
-//     img: await storageRef.getDownloadURL()
-//     text: bugValues.bugDescription,
-//     name: place.name,
-//     compId: place.id,
-//   };
 
 export default usePostBug;

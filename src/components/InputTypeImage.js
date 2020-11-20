@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "column",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  textField: {
-    width: "25ch",
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     display: "flex",
+//     flexWrap: "wrap",
+//     flexDirection: "column",
+//   },
+//   margin: {
+//     margin: theme.spacing(1),
+//   },
+//   withoutLabel: {
+//     marginTop: theme.spacing(3),
+//   },
+//   textField: {
+//     width: "25ch",
+//   },
+// }));
 
 export default function InputTypeImage({ input, setInput }) {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   const previewInit = () => {
     if (input.typeImage !== "") return URL.createObjectURL(input.typeImage);

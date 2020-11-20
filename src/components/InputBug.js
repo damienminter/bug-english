@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,13 +8,11 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-// import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import BugReportIcon from "@material-ui/icons/BugReport";
 
 //Redux
-import { useDispatch, useSelector } from "react-redux";
-// import { addBugAction, selectBugAction } from "../redux/actions";
+import { useSelector } from "react-redux";
 import NaverSearchContainer from "../naver/NaverSearchContainer";
 import NaverSearchItem from "../naver/NaverSearchItem";
 import ProgressBar from "../firebase/ProgressBar";
@@ -23,7 +21,8 @@ import useStorage from "../firebase/useStorage";
 import InputType from "./InputType";
 import InputTypeWrite from "./InputTypeWrite";
 import InputTypeImage from "./InputTypeImage";
-import InputTypeUrl from "./InputTypeUrl";
+import usePostBug from "../bugs/usePostBug";
+// import InputTypeUrl from "./InputTypeUrl";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -57,30 +56,27 @@ export default function InputBug() {
   };
 
   const [input, setInput] = useState(bugInit);
-  const [submit, setSubmit] = useState("image"); // api choice - photo/text
-  const [preview, setPreview] = useState(null); // photo thubnail
-  const [imageUrl, setImageUrl] = useState(null); // address of image
-  // const [bugText, setBugText] = useState(""); // description
-  // const [error, setError] = useState(null);
+  const [submit, setSubmit] = useState("text"); // api choice - photo/text
   const [file, setFile] = useState(null); // File to upload to storage
   const [place, setPlace] = useState({});
-  // const [uploadUrl, setUploadUrl] = useState({});
+  const [bug, setBug] = useState(null);
 
   const { progress, url, error } = useStorage(file);
+  const { msg } = usePostBug(bug);
 
-  console.log("input");
-  console.log(input);
+  // TEMP TEMP TEMP TEMP TEMP
+  if (error || msg) console.log(msg || error);
+
+  const newBug = {
+    type: submit,
+    media: null,
+    CompName: place.name,
+    compId: place.id,
+  };
 
   // Central State
   // const dispatchBug = useDispatch();
   const searchResult = useSelector((state) => state.searchResult);
-
-  // clean up file once file is uploaded
-  useEffect(() => {
-    if (url) {
-      setFile(null);
-    }
-  }, [url]);
 
   // Update the company infomation with store result from naver search
   useEffect(() => {
@@ -90,42 +86,32 @@ export default function InputBug() {
   // Submit bug
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("SUBMITTED");
+
     console.log(submit);
-    // 1. Validate fields are filled in
-    // 2. Check if image (if not skip step)
-    if (submit === "image" && imageUrl !== null) {
-      // 3. Upload the photo to Storage
+
+    if (submit === "image" && input.typeImage !== "") {
       const addPhoto = () => {
-        console.log(imageUrl);
-        setFile(input.typeImage); // This should trigger upload
-        console.log("url");
-        console.log(url);
-        console.log("error");
-        console.log(error);
-        console.log("progress");
-        console.log(progress);
-        setSubmit("text");
+        setFile(input.typeImage);
       };
       addPhoto();
     }
     if (submit === "text") {
-      console.log("Submitting Text");
-
-      const newBug = {
-        id: uuidv4(),
-        // timeStamp: new Date(),
-        img: url,
-        description: input.typeText,
-        name: place.name,
-        compId: place.id,
-      };
-      console.log("New Bug");
-      console.log(newBug);
+      setBug({ ...newBug, media: input.typeText });
+    }
+    if (submit === "url") {
+      setBug({ ...newBug, media: input.typeUrl });
     }
   };
 
-  // xxxxxxxxxxxxxxxxxx************** RETURN xxxxxxxxxxxxxxxxxx************** //
+  // clean up file once file is uploaded
+  useEffect(() => {
+    if (url) {
+      setFile(null);
+      setBug({ ...newBug, media: url });
+    }
+  }, [url]);
+
+  // xxxxxxxxxxxxxxxxxx************** RETURN JSX xxxxxxxxxxxxxxxxxx************** //
 
   return (
     <Card className={classes.root}>
@@ -139,6 +125,7 @@ export default function InputBug() {
         subheader="Enter a new Bug"
       />
       <InputType
+        setSubmit={setSubmit}
         typeWrite={<InputTypeWrite input={input} setInput={setInput} />}
         typeImage={<InputTypeImage input={input} setInput={setInput} />}
         // typeUrl={<InputTypeUrl input={input} setInput={setInput} />}
