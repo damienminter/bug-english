@@ -18,7 +18,6 @@ useEffect(() => {
 
 
 async () => {
-    console.log(newBug);
     const url = await storageRef.getDownloadURL();
     const createdAt = timestamp();
     await collectionRef.add({ newBug, url, createdAt });

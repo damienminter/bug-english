@@ -56,10 +56,11 @@ export default function InputBug() {
   };
 
   const [input, setInput] = useState(bugInit);
-  const [submit, setSubmit] = useState("text"); // api choice - photo/text
   const [file, setFile] = useState(null); // File to upload to storage
   const [place, setPlace] = useState({});
   const [bug, setBug] = useState(null);
+
+  const [value, setValue] = useState(0); // Input Type selector
 
   const { progress, url, error } = useStorage(file);
   const { msg } = usePostBug(bug);
@@ -68,10 +69,11 @@ export default function InputBug() {
   if (error || msg) console.log(msg || error);
 
   const newBug = {
-    type: submit,
+    type: value,
     media: null,
     CompName: place.name,
     compId: place.id,
+    author: "Damien Minter",
   };
 
   // Central State
@@ -87,18 +89,16 @@ export default function InputBug() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(submit);
-
-    if (submit === "image" && input.typeImage !== "") {
+    if (value === 1 && input.typeImage !== "") {
       const addPhoto = () => {
         setFile(input.typeImage);
       };
       addPhoto();
     }
-    if (submit === "text") {
+    if (value === 0) {
       setBug({ ...newBug, media: input.typeText });
     }
-    if (submit === "url") {
+    if (value === 2) {
       setBug({ ...newBug, media: input.typeUrl });
     }
   };
@@ -125,7 +125,9 @@ export default function InputBug() {
         subheader="Enter a new Bug"
       />
       <InputType
-        setSubmit={setSubmit}
+        // setSubmit={setSubmit}
+        value={value}
+        setValue={setValue}
         typeWrite={<InputTypeWrite input={input} setInput={setInput} />}
         typeImage={<InputTypeImage input={input} setInput={setInput} />}
         // typeUrl={<InputTypeUrl input={input} setInput={setInput} />}

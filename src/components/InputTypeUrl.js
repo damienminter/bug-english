@@ -34,8 +34,6 @@ export default function InputTypeUrl({ input, setInput }) {
     setPreview(url);
   };
 
-  console.log(input);
-
   return (
     <div>
       <TextField
