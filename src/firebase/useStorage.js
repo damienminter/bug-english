@@ -17,6 +17,9 @@ const useStorage = (file) => {
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
 
+  console.log("file");
+  console.log(file);
+
   useEffect(() => {
     if (!file) return;
     // references
