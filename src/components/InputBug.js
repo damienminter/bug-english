@@ -71,7 +71,7 @@ export default function InputBug() {
   const newBug = {
     type: value,
     media: null,
-    CompName: place.name,
+    compName: place.name,
     compId: place.id,
     author: "Damien Minter",
   };

@@ -7,13 +7,12 @@ const usePostBug = (bug) => {
   useEffect(() => {
     if (!bug) return;
     setMsg("adding to database");
-    console.log(bug);
     // references
     const collectionRef = projectFirestore.collection("BUGENGLISH_BUGS");
 
     const postData = async () => {
-      const createdAt = timestamp();
-      await collectionRef.add(bug, createdAt);
+      const createdAt = await timestamp(); // I added await on server stamp
+      await collectionRef.add({ ...bug, createdAt });
       setMsg("Success");
     };
     postData(bug);

@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-// import CardMedia from "@material-ui/core/CardMedia";
+import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 // Component
 export default function ItemBug(props) {
   const { bug } = props;
-  const comp = bug.compId;
+  const comp = bug;
   const dispatchBug = useDispatch();
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
@@ -67,6 +67,24 @@ export default function ItemBug(props) {
   // Redux Event Handlers
   const handleSelectBug = (bug) => {
     dispatchBug(selectBugAction(bug));
+  };
+
+  const media = (type) => {
+    if (type === 0)
+      return (
+        <Typography variant="body1" color="textSecondary" component="p">
+          {bug.media}
+        </Typography>
+      );
+    else
+      return (
+        <CardMedia
+          className={classes.media}
+          image={bug.media}
+          title="bug-english"
+        />
+      );
+    //  <img src={bug.media} alt="bug-english"></img>;
   };
 
   return (
@@ -83,23 +101,13 @@ export default function ItemBug(props) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={bug.name}
+        title={bug.compName}
         subheader="September 14, 2016"
       />
-      {/* <CardMedia
-        className={classes.media}
-        image="../images/beware.jpeg"
-        title="beware"
-      /> */}
+
       <CardContent>
         <div>
-          <span>
-            <h1>"</h1>
-            <Typography variant="body1" color="textSecondary" component="p">
-              {bug.description}
-            </Typography>
-            <h1>"</h1>
-          </span>
+          <span>{media(bug.type)}</span>
         </div>
       </CardContent>
       <CardActions disableSpacing>
