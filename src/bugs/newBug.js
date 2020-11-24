@@ -30,7 +30,7 @@ return {url};
 
 export default newBug;
 
-// console.log("this is a new bug ")
+// ("this is a new bug ")
 
 // // need to look at how the bug is being added to firebase as I am just trying to create an object
 

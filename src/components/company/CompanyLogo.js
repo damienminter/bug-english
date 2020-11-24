@@ -19,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CompanyLogo({ compId }) {
-  console.log("COMPANY LOGO FIRED");
-  console.log(compId);
   const classes = useStyles();
   const dispatchCompany = useDispatch();
   const dispatchFilterBugs = useDispatch();
