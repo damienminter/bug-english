@@ -4,7 +4,7 @@ import {
   // projectFirestore,
   // timestamp,
 } from "../firebase/config";
-import usePostBug from "../bugs/usePostBug";
+import { v4 as uuidv4 } from "uuid";
 
 // 1. Take the Description from inout screen OR
 // 1. URL from from server
@@ -20,7 +20,7 @@ const useStorage = (file) => {
   useEffect(() => {
     if (!file) return;
     // references
-    const storageRef = projectStorage.ref(file.name);
+    const storageRef = projectStorage.ref("BUGENGLISH_IMAGES").child(uuidv4());
     // const collectionRef = projectFirestore.collection("images");
 
     storageRef.put(file).on(

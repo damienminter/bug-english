@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactPlayer from "react-player";
 
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,32 +25,43 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InputTypeUrl({ input, setInput }) {
   const classes = useStyles();
-  const [preview, setPreview] = useState("");
-  //   const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   //   proxy = "https://cors-anywhere.herokuapp.com/";
-  const url = `https://cors-anywhere.herokuapp.com/https://www.youtube.com/watch?v=PW0tlULei9o`;
+  // const url = `https://www.youtube.com/watch?v=PW0tlULei9o`;
 
   const handleOnChange = (e) => {
-    setInput(e.target.value);
-    setPreview(url);
+    setInput({
+      ...input,
+      [e.target.id]: e.target.value,
+    });
+    // setSubmit("text");
+
+    setPreview(e.target.value);
+    setError(null);
   };
+
+  const previewInit = () => {
+    if (input.typeUrl !== "") return input.typeUrl;
+  };
+
+  const [preview, setPreview] = useState(previewInit); // Temp location of the selected file
 
   return (
     <div>
       <TextField
-        id="bugLink"
+        id="typeUrl"
         label="Paste URL"
         variant="outlined"
         required
-        value={input}
+        value={input.url}
         onChange={handleOnChange}
         className={classes.margin}
       />
-      <CardMedia
-        component="iframe"
-        className={classes.media}
-        image={preview}
-        autoPlay
+      {error && <p>{error}</p>}
+      <ReactPlayer
+        controls
+        url={input.typeUrl}
+        onError={() => setError("Not recognised")}
       />
     </div>
   );

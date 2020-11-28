@@ -22,7 +22,7 @@ import InputType from "./InputType";
 import InputTypeWrite from "./InputTypeWrite";
 import InputTypeImage from "./InputTypeImage";
 import usePostBug from "../bugs/usePostBug";
-// import InputTypeUrl from "./InputTypeUrl";
+import InputTypeUrl from "./InputTypeUrl";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -111,6 +111,8 @@ export default function InputBug() {
     }
   }, [url]);
 
+  console.log(input);
+
   // xxxxxxxxxxxxxxxxxx************** RETURN JSX xxxxxxxxxxxxxxxxxx************** //
 
   return (
@@ -130,7 +132,7 @@ export default function InputBug() {
         setValue={setValue}
         typeWrite={<InputTypeWrite input={input} setInput={setInput} />}
         typeImage={<InputTypeImage input={input} setInput={setInput} />}
-        // typeUrl={<InputTypeUrl input={input} setInput={setInput} />}
+        typeUrl={<InputTypeUrl input={input} setInput={setInput} />}
       />
       <CardContent>
         <form

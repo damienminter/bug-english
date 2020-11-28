@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ReactPlayer from "react-player";
+import moment from "moment";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -63,10 +65,14 @@ export default function ItemBug(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  console.log(comp.createdAt);
   // Redux Event Handlers
   const handleSelectBug = (bug) => {
     dispatchBug(selectBugAction(bug));
+  };
+
+  const time = (time) => {
+    return moment(time).fromNow();
   };
 
   const media = (type) => {
@@ -76,7 +82,7 @@ export default function ItemBug(props) {
           {bug.media}
         </Typography>
       );
-    else
+    else if (type === 1) {
       return (
         <CardMedia
           className={classes.media}
@@ -84,6 +90,17 @@ export default function ItemBug(props) {
           title="bug-english"
         />
       );
+    } else if (type === 2) {
+      return (
+        <ReactPlayer
+          width={"100%"}
+          controls
+          url={bug.media}
+          onError={() => console.log(`Cannot play: ${bug.media}`)}
+        />
+      );
+    }
+
     //  <img src={bug.media} alt="bug-english"></img>;
   };
 
@@ -102,7 +119,7 @@ export default function ItemBug(props) {
           </IconButton>
         }
         title={bug.compName}
-        subheader="September 14, 2016"
+        subheader={bug.createdAt.toDate().toDateString()}
       />
 
       <CardContent>
