@@ -208,6 +208,9 @@ export default function PrimarySearchAppBar() {
           <MenuItem component={Link} to={"/add-bug"}>
             New Bug
           </MenuItem>
+          <MenuItem component={Link} to={"/no-mui"}>
+            No Mui
+          </MenuItem>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">

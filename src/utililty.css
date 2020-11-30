@@ -1,0 +1,67 @@
+.BugPage {
+  display: flex;
+  justify-content: center;
+}
+
+.BugCard {
+  width: 345px;
+  height: 600px;
+  max-width: 100%;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.3);
+  background-image: url("./images/britishflagclean.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  background-color: #232539;
+  border-radius: 22px;
+  padding-bottom: 1.6em;
+  padding-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 1em;
+}
+
+.BugCardContent {
+  flex: 1;
+  /* position: fixed; */
+
+  /* opacity: 94%; */
+  display: grid;
+  grid-template-rows: 1fr fit-content 2fr;
+  border-radius: 18px;
+  max-height: 100vh;
+  width: 100vw;
+  /* margin: 1em; */
+}
+
+.BugCardHeader {
+  /* border-bottom: 1px black solid; */
+  background-color: white;
+  opacity: 90%;
+}
+
+.BugCardBody {
+  /* height: 450px; */
+  background-color: white;
+  width: 100%;
+}
+
+.BugCardFooter {
+  border-top: 1px black solid;
+  background-color: white;
+  /* opacity: 90%; */
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+}

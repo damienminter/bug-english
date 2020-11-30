@@ -5,6 +5,7 @@ import NewBug from "../pages/NewBug";
 import Home from "../pages/Home";
 import Details from "../pages/Details";
 import Company from "../pages/Company";
+import NoMui from "../pages/NoMui";
 
 export default function Routes() {
   return (
@@ -12,6 +13,9 @@ export default function Routes() {
       <Switch>
         <Route path="/add-bug">
           <NewBug />
+        </Route>
+        <Route path="/no-mui">
+          <NoMui />
         </Route>
         <Route path="/bug-details">
           <Details />
