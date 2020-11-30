@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { searchNaverAction } from "../redux/actions";
+import { searchNaverAction } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 const axios = require("axios");
 

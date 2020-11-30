@@ -29,7 +29,7 @@ import CompanyLogo from "../Company/CompanyLogo";
 //Redux
 import { useDispatch } from "react-redux";
 import { selectBugAction } from "../../redux/actions";
-import useNaverItem from "../../naver/useNaverItem";
+import useNaverItem from "../../apis/naver/useNaver";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({

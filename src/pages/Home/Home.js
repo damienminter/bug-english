@@ -1,6 +1,6 @@
 import React from "react";
 import ListBug from "./ListBug";
-import useFireStore from "../../firebase/useFirestore";
+import useFireStore from "../../apis/firebase/useFirestore";
 
 // import { useSelector } from "react-redux";
 

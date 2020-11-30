@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useNaver from "../naver/useNaver";
+import useNaver from "../apis/naver/useNaver";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";

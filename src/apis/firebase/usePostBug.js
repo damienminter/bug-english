@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { projectFirestore, timestamp } from "../firebase/config";
+import { projectFirestore, timestamp } from "../../firebase/config";
 
 const usePostBug = (bug) => {
   const [msg, setMsg] = useState(null);

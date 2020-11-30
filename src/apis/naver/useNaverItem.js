@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addCompanyAction } from "../redux/actions";
+import { addCompanyAction } from "../../redux/actions";
 const axios = require("axios");
 
 const useNaverItem = (input) => {
