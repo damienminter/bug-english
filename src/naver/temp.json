@@ -1,0 +1,263 @@
+// 20201130025058
+// https://map.naver.com/v5/api/sites/summary/12758193
+
+{
+    "id": 12758193,
+    "isSite": true,
+    "name": "NAVER",
+    "type": "drt",
+    "rCode": "02135103",
+    "x": 127.1054065,
+    "y": 37.3595668999999,
+    "posExact": true,
+    "address": "178-1 Jeongja-dong Bundang-gu, Seongnam-si Gyeonggi-do",
+    "fullAddress": "178-1 Jeongja-dong Bundang-gu, Seongnam-si Gyeonggi-do",
+    "addressAbbr": "",
+    "roadAddr": {
+      "text": "6 Buljeong-ro Bundang-gu, Seongnam-si Gyeonggi-do",
+      "abbrText": ""
+    },
+    "fullRoadAddress": "6 Buljeong-ro Bundang-gu, Seongnam-si Gyeonggi-do",
+    "phone": "1588-3830",
+    "isCallLink": 0,
+    "description": "네이버(주)는 한국 최대 검색포털 네이버 뿐만 아니라, 전 세계 2억 명이 사용하고 있는 모바일 메신저 라인, 동영상 카메라 스노우, 디지털 만화 서비스 네이버웹툰 등을 서비스하고 있는 글로벌 ICT 기업입니다. 네이버는 인공지능, 로보틱스, 모빌리티 등 미래 기술에 대한 지속적인 연구개발을 통해 기술 플랫폼의 변화와 혁신을 추구하며 세계 각국의 수많은 이용자와 다양한 파트너들이 함께 성장할 수 있도록 노력하고 있습니다.",
+    "way": "",
+    "keywords": 0,
+    "hasNaverTalktalkUrl": false,
+    "naverTalktalkUrl": "",
+    "adult": "N",
+    "endPageUrl": "",
+    "mobileEndPageUrl": "",
+    "urlList": [
+      {
+        "type": "normal",
+        "url": "http://www.navercorp.com/",
+        "landingUrl": "http://www.navercorp.com/",
+        "mUrl": "http://www.navercorp.com/",
+        "mLandingUrl": "http://www.navercorp.com/",
+        "isDeadUrl": false
+      }
+    ],
+    "ktCallMd": "b33455f454560513dd01e59cfe7a202b",
+    "ppc": "1",
+    "images": [
+      {
+        "type": "DRT",
+        "groupName": "기본 정보",
+        "number": 1,
+        "url": "https://ldb-phinf.pstatic.net/20150831_55/1441017275624IF6uY_JPEG/127074523578690_1.jpg",
+        "source": null,
+        "desc": "",
+        "modDate": "2020-09-29 01:48:49"
+      },
+      {
+        "type": "DRT",
+        "groupName": "기본 정보",
+        "number": 2,
+        "url": "https://ldb-phinf.pstatic.net/20150831_11/1441017275450T6eQw_JPEG/127074523578690_0.jpg",
+        "source": null,
+        "desc": "",
+        "modDate": "2020-09-29 01:48:49"
+      },
+      {
+        "type": "DRT",
+        "groupName": "기본 정보",
+        "number": 3,
+        "url": "https://ldb-phinf.pstatic.net/20150831_44/1441017274998TarnQ_JPEG/116376505248125_0.jpg",
+        "source": null,
+        "desc": "",
+        "modDate": "2020-09-29 01:48:49"
+      },
+      {
+        "type": "DRT",
+        "groupName": "기본 정보",
+        "number": 4,
+        "url": "https://ldb-phinf.pstatic.net/20150831_110/1441017275215iTEqU_JPEG/116376505248125_1.jpg",
+        "source": null,
+        "desc": "",
+        "modDate": "2020-09-29 01:48:49"
+      }
+    ],
+    "imageURL": "https://ldb-phinf.pstatic.net/20150831_55/1441017275624IF6uY_JPEG/127074523578690_1.jpg",
+    "imageModDate": "0",
+    "displayCategory": "Service, Industry>IT Service",
+    "category": "Service, Industry>IT Service",
+    "categories": [
+      "Service, Industry>IT Service"
+    ],
+    "categoryPaths": [
+      [
+        "225111",
+        "225125",
+        "225254",
+        "226381"
+      ],
+      [
+        "225111",
+        "225131",
+        "225336"
+      ],
+      [
+        "225111",
+        "225125",
+        "225254",
+        "226383"
+      ]
+    ],
+    "bizHour": [
+      {
+        "type": "평일",
+        "startTime": "10:00",
+        "endTime": "19:00",
+        "description": "",
+        "isDayOff": false
+      }
+    ],
+    "bizhourInfo": "평일 10:00~19:00",
+    "options": [
+      {
+        "id": 2,
+        "name": "주차",
+        "isCheck": "1",
+        "order": 1,
+        "iconURL": "http://static.naver.net/maps2/ic_endinfo2.png",
+        "desc": ""
+      },
+      {
+        "id": 7,
+        "name": "무선 인터넷",
+        "isCheck": "1",
+        "order": 7,
+        "iconURL": "http://static.naver.net/maps2/ic_endinfo7.png",
+        "desc": ""
+      },
+      {
+        "id": 8,
+        "name": "남/녀 화장실 구분",
+        "isCheck": "1",
+        "order": 10,
+        "iconURL": "http://static.naver.net/maps2/ic_endinfo8.png",
+        "desc": ""
+      }
+    ],
+    "menus": null,
+    "menuImages": [
+      
+    ],
+    "previewImages": [
+      
+    ],
+    "streetPanorama": {
+      "id": "gs6MgtmiiDdVEq+5TMvyQg==",
+      "escapedId": "gs6MgtmiiDdVEq-5TMvyQg",
+      "fov": 80,
+      "latitude": 37.3599599,
+      "longitude": 127.1059616,
+      "pan": -118.72,
+      "tilt": 20.01
+    },
+    "skyPanorama": {
+      "id": "84kYmtUel5DHgVBIiqNcJg==",
+      "escapedId": "84kYmtUel5DHgVBIiqNcJg",
+      "fov": 124,
+      "latitude": 37.359926,
+      "longitude": 127.105967,
+      "pan": -122.71,
+      "tilt": -30
+    },
+    "insidePanorama": null,
+    "interiorPanorama": null,
+    "indoorPanorama": null,
+    "poiInfo": {
+      "hasRelation": true,
+      "hasRoad": false,
+      "hasLand": false,
+      "hasPolygon": false,
+      "relation": {
+        "poiType": "relation",
+        "poiShapeType": "1",
+        "shapeKey": {
+          "shapeID": "12758193",
+          "typeName": "RELA",
+          "wsid": "1.0"
+        },
+        "boundary": {
+          "minX": 117.99260273191031,
+          "minY": 19.694477084885456,
+          "maxX": 117.99260273191031,
+          "maxY": 19.694477084885456
+        },
+        "detail": [
+          {
+            "type": "2",
+            "sid": "19225324",
+            "fullName": "그린팩토리주차장입구",
+            "name": "그린팩토리주차장입구",
+            "category": "입구(차량)",
+            "xPos": "127.1058730",
+            "yPos": "37.3593680"
+          },
+          {
+            "type": "3",
+            "sid": "21323751",
+            "fullName": "그린팩토리주차장출구",
+            "name": "그린팩토리주차장출구",
+            "category": "출구(차량)",
+            "xPos": "127.1050729",
+            "yPos": "37.3597639"
+          },
+          {
+            "type": "5",
+            "sid": "21788021",
+            "fullName": "그린팩토리정문",
+            "name": "그린팩토리정문",
+            "category": "입구(사람)",
+            "xPos": "127.1052700",
+            "yPos": "37.3597610"
+          }
+        ]
+      },
+      "road": null,
+      "land": null,
+      "polygon": null,
+      "parentRelation": null
+    },
+    "entranceCoords": {
+      "car": [
+        {
+          "rep": true,
+          "x": 127.105873,
+          "y": 37.359368
+        }
+      ],
+      "walk": [
+        {
+          "rep": true,
+          "x": 127.10527,
+          "y": 37.359761
+        }
+      ]
+    },
+    "theme": {
+      
+    },
+    "hasNaverBooking": false,
+    "naverBookingUrl": "",
+    "naverbookingId": null,
+    "petrolInfo": null,
+    "michelinGuide": null,
+    "broadcastInfo": null,
+    "marker": "nres://marker/00063-00336",
+    "markerSelected": "nres://marker/00063-00376",
+    "datalab": {
+      "images": null,
+      "alsosearched": null
+    },
+    "reviewCount": 1238,
+    "dynamicData": null,
+    "markerLabel": {
+      "text": null,
+      "style": "default"
+    },
+    "isParkingSupported": false
+  }

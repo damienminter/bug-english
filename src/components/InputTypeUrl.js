@@ -4,8 +4,6 @@ import ReactPlayer from "react-player";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 
-import CardMedia from "@material-ui/core/CardMedia";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",

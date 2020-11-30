@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import moment from "moment";
 
+import "../utililty.css";
+
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -78,9 +80,11 @@ export default function ItemBug(props) {
   const media = (type) => {
     if (type === 0)
       return (
-        <Typography variant="body1" color="textSecondary" component="p">
-          {bug.media}
-        </Typography>
+        <div className="player-wrapper">
+          <Typography variant="body1" color="textSecondary" component="p">
+            {bug.media}
+          </Typography>
+        </div>
       );
     else if (type === 1) {
       return (
@@ -92,12 +96,14 @@ export default function ItemBug(props) {
       );
     } else if (type === 2) {
       return (
-        <ReactPlayer
-          width={"100%"}
-          controls
-          url={bug.media}
-          onError={() => console.log(`Cannot play: ${bug.media}`)}
-        />
+        <div className="player-wrapper">
+          <ReactPlayer
+            className="react-player"
+            controls
+            url={bug.media}
+            onError={() => console.log(`Cannot play: ${bug.media}`)}
+          />
+        </div>
       );
     }
 

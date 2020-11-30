@@ -4,6 +4,8 @@ import "./card.css";
 export default function NaverSearchItem(props) {
   const { place } = props;
 
+  console.log(place);
+
   const regex = (target) => target.replace(/(<([^>]+)>)/gi, "");
 
   return (
@@ -24,6 +26,7 @@ export default function NaverSearchItem(props) {
               <p>{place.address}</p>
               <p>{place.telDisplay}</p>
               <p>{place.bizhourInfo}</p>
+              <p>{place.urlList}</p>
               <p>{place.id}</p>
               <p>
                 {place.x} {place.y}
