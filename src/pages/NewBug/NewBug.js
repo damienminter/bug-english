@@ -1,5 +1,5 @@
 import React from "react";
-import InputBug from "../components/InputBug";
+import InputBug from "./InputBug";
 
 export default function NewBug() {
   return (

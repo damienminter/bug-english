@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPlayer from "react-player";
 
-import "../utililty.css";
+import "../../utililty.css";
 
 const media = "https://www.youtube.com/watch?v=yY4pdpbsCh8";
 

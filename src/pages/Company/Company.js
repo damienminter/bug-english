@@ -1,8 +1,8 @@
 import React from "react";
-import CompanyListBug from "../components/company/CompanyListBugs";
+import CompanyListBug from "./CompanyListBugs";
 
 import { useSelector } from "react-redux";
-import CompanyInformation from "../components/company/CompanyInformation";
+import CompanyInformation from "./CompanyInformation";
 
 export default function Company() {
   const comp = useSelector((state) => state.company);

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import moment from "moment";
 
-import "../utililty.css";
+import "../../utililty.css";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,12 +24,12 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 // import BugReportIcon from "@material-ui/icons/BugReport";
 
-import CompanyLogo from "../components/company/CompanyLogo";
+import CompanyLogo from "../Company/CompanyLogo";
 
 //Redux
 import { useDispatch } from "react-redux";
-import { selectBugAction } from "../redux/actions";
-import useNaverItem from "../naver/useNaverItem";
+import { selectBugAction } from "../../redux/actions";
+import useNaverItem from "../../naver/useNaverItem";
 
 // Material UI
 const useStyles = makeStyles((theme) => ({

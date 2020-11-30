@@ -1,8 +1,8 @@
 import React from "react";
 
 import { NavLink, Link } from "react-router-dom";
-// import Home from "../pages/Home";
-// import NewBug from "../pages/NewBug";
+// import Home from "../pages/Home/Home";
+// import NewBug from "../pages/NewBug/NewBug";
 
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";

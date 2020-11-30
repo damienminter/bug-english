@@ -1,7 +1,7 @@
 import React from "react";
 
 import ItemBug from "./ItemBug";
-import "../App.css";
+import "../../App.css";
 
 export default function ListBug(props) {
   const { bugs } = props;

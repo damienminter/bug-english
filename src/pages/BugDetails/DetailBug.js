@@ -21,7 +21,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CloseIcon from "@material-ui/icons/Close";
 
 // Components
-import CompanyLogo from "../components/company/CompanyLogo";
+import CompanyLogo from "../Company/CompanyLogo";
 
 export default function DetailBug(props) {
   const { bug } = props;

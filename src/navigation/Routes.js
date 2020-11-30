@@ -1,11 +1,11 @@
 import React from "react";
 
 import { Switch, Route } from "react-router-dom";
-import NewBug from "../pages/NewBug";
-import Home from "../pages/Home";
-import Details from "../pages/Details";
-import Company from "../pages/Company";
-import NoMui from "../pages/NoMui";
+import NewBug from "../pages/NewBug/NewBug";
+import Home from "../pages/Home/Home";
+import Details from "../pages/BugDetails/Details";
+import Company from "../pages/Company/Company";
+import NoMui from "../pages/NoMui/NoMui";
 
 export default function Routes() {
   return (

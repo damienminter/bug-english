@@ -1,5 +1,5 @@
 import React from "react";
-import { BugCard } from "../components/BugCard";
+import { BugCard } from "./BugCard";
 
 export default function NoMui() {
   return (

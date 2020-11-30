@@ -13,15 +13,15 @@ import BugReportIcon from "@material-ui/icons/BugReport";
 
 //Redux
 import { useSelector } from "react-redux";
-import NaverSearchContainer from "../naver/NaverSearchContainer";
-import NaverSearchItem from "../naver/NaverSearchItem";
-import ProgressBar from "../firebase/ProgressBar";
-import useStorage from "../firebase/useStorage";
+import NaverSearchContainer from "../../naver/NaverSearchContainer";
+import NaverSearchItem from "../../naver/NaverSearchItem";
+import ProgressBar from "../../firebase/ProgressBar";
+import useStorage from "../../firebase/useStorage";
 
 import InputType from "./InputType";
 import InputTypeWrite from "./InputTypeWrite";
 import InputTypeImage from "./InputTypeImage";
-import usePostBug from "../bugs/usePostBug";
+import usePostBug from "../../bugs/usePostBug";
 import InputTypeUrl from "./InputTypeUrl";
 
 // Material UI
